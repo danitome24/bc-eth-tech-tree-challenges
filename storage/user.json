@@ -2,5 +2,59 @@
   "address": "0xaa4C60b784E2b3E485035399bF1b1aBDeD66A60f",
   "ens": "meketom.eth",
   "installLocation": "/home/dtome/Workspace/danitome24/projects/bc-eth-tech-tree-challenges",
-  "challenges": []
+  "challenges": [
+    {
+      "challengeName": "token-voting",
+      "status": "success",
+      "contractAddress": "0xb917ee8883ffe39cc1523555516223c55a9acfb3",
+      "network": "sepolia",
+      "gasReport": [
+        {
+          "functionName": "testDoubleVoting",
+          "gasUsed": 98592
+        },
+        {
+          "functionName": "testGetResultBeforeDeadline",
+          "gasUsed": 147013
+        },
+        {
+          "functionName": "testNoTokensToVote",
+          "gasUsed": 19802
+        },
+        {
+          "functionName": "testNotVotingCotractAddressCantCallRemoval",
+          "gasUsed": 157113
+        },
+        {
+          "functionName": "testTieVotingResult",
+          "gasUsed": 150336
+        },
+        {
+          "functionName": "testVoteAfterDeadline",
+          "gasUsed": 21282
+        },
+        {
+          "functionName": "testVoteRemovalOnTransfer",
+          "gasUsed": 92350
+        },
+        {
+          "functionName": "testVotingAgainst",
+          "gasUsed": 78964
+        },
+        {
+          "functionName": "testVotingFor",
+          "gasUsed": 98884
+        },
+        {
+          "functionName": "testVotingResultApproved",
+          "gasUsed": 147777
+        },
+        {
+          "functionName": "testVotingResultRejected",
+          "gasUsed": 150378
+        }
+      ],
+      "timestamp": "2025-01-08T20:44:37.264Z"
+    }
+  ]
 }
