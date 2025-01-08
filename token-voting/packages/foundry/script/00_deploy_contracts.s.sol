@@ -7,7 +7,8 @@ import "./DeployHelpers.s.sol";
 
 contract DeployContracts is ScaffoldETHDeploy {
   function run() external ScaffoldEthDeployerRunner {
-    DecentralizedResistanceToken drt = new DecentralizedResistanceToken(1000000 * 10**18); // 1,000,000 tokens
+    DecentralizedResistanceToken drt =
+      new DecentralizedResistanceToken(1000000 * 10 ** 18); // 1,000,000 tokens
     console.logString(
       string.concat(
         "DecentralizedResistanceToken deployed at: ", vm.toString(address(drt))
@@ -18,9 +19,7 @@ contract DeployContracts is ScaffoldETHDeploy {
 
     drt.setVotingContract(address(challenge));
     console.logString(
-      string.concat(
-        "Voting deployed at: ", vm.toString(address(challenge))
-      )
+      string.concat("Voting deployed at: ", vm.toString(address(challenge)))
     );
   }
 }

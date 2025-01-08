@@ -6,27 +6,30 @@ import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 import { console2 } from "forge-std/console2.sol";
 
 contract DecentralizedResistanceToken is ERC20, Ownable(msg.sender) {
-    address public votingContract;
-    constructor(uint256 initialSupply) ERC20("DecentralizedResistanceToken", "DRT") {
-        _mint(msg.sender, initialSupply);
-    }
+  address public votingContract;
 
-    function setVotingContract(address _votingContract) external onlyOwner {
-        votingContract = _votingContract;
-    }
+  constructor(
+    uint256 initialSupply
+  ) ERC20("DecentralizedResistanceToken", "DRT") {
+    _mint(msg.sender, initialSupply);
+  }
 
-    function _update(
-        address from,
-        address to,
-        uint256 amount
-    ) internal override {
-        if (votingContract != address(0) && from != address(0)) {
-            IVoting(votingContract).removeVotes(from);
-        }
-        super._update(from, to, amount);
+  function setVotingContract(
+    address _votingContract
+  ) external onlyOwner {
+    votingContract = _votingContract;
+  }
+
+  function _update(address from, address to, uint256 amount) internal override {
+    if (votingContract != address(0) && from != address(0)) {
+      IVoting(votingContract).removeVotes(from);
     }
+    super._update(from, to, amount);
+  }
 }
 
 interface IVoting {
-    function removeVotes(address voter) external;
+  function removeVotes(
+    address voter
+  ) external;
 }
