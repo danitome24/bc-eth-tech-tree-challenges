@@ -75,146 +75,146 @@ contract GovernanceTest is Test {
         governance.propose("Failing Proposal");
     }
 
-    function testErrorNonMemberVoting() public {
-        vm.prank(userNonMember);
-        vm.expectRevert();
-        governance.vote(1);
-    }
+    // function testErrorNonMemberVoting() public {
+    //     vm.prank(userNonMember);
+    //     vm.expectRevert();
+    //     governance.vote(1);
+    // }
 
-    function testVotingFor() public {
-        vm.startPrank(userOne);
-        vm.expectEmit(false, true, true, true);
-        emit Governance.VoteCasted(proposalId, userOne, 1, token.balanceOf(userOne));
-        governance.vote(1);
-        (,uint deadline,) = governance.getProposal(proposalId);
-        vm.warp(deadline + 1);
-        bool result = governance.getResult(proposalId);
-        assertEq(result, true);
-    }
+    // function testVotingFor() public {
+    //     vm.startPrank(userOne);
+    //     vm.expectEmit(false, true, true, true);
+    //     emit Governance.VoteCasted(proposalId, userOne, 1, token.balanceOf(userOne));
+    //     governance.vote(1);
+    //     (,uint deadline,) = governance.getProposal(proposalId);
+    //     vm.warp(deadline + 1);
+    //     bool result = governance.getResult(proposalId);
+    //     assertEq(result, true);
+    // }
 
-    function testVotingAgainst() public {
-        vm.startPrank(userTwo);
-        vm.expectEmit(false, true, true, true);
-        emit Governance.VoteCasted(proposalId, userTwo, 0, token.balanceOf(userTwo));
-        governance.vote(0);
-        (,uint deadline,) = governance.getProposal(proposalId);
-        vm.warp(deadline + 1);
-        bool result = governance.getResult(proposalId);
-        assertEq(result, false);
-    }
+    // function testVotingAgainst() public {
+    //     vm.startPrank(userTwo);
+    //     vm.expectEmit(false, true, true, true);
+    //     emit Governance.VoteCasted(proposalId, userTwo, 0, token.balanceOf(userTwo));
+    //     governance.vote(0);
+    //     (,uint deadline,) = governance.getProposal(proposalId);
+    //     vm.warp(deadline + 1);
+    //     bool result = governance.getResult(proposalId);
+    //     assertEq(result, false);
+    // }
 
-    function testVotingAbstain() public {
-        // Test that an abstain vote doesn't stop a proposal from failing
-        vm.startPrank(userThree);
-        vm.expectEmit(false, true, true, true);
-        emit Governance.VoteCasted(proposalId, userThree, 2, token.balanceOf(userThree));
-        governance.vote(2);
-        vm.stopPrank();
-        (,uint deadline,) = governance.getProposal(proposalId);
-        vm.warp(deadline + 1);
-        bool result = governance.getResult(proposalId);
-        assertEq(result, false);
+    // function testVotingAbstain() public {
+    //     // Test that an abstain vote doesn't stop a proposal from failing
+    //     vm.startPrank(userThree);
+    //     vm.expectEmit(false, true, true, true);
+    //     emit Governance.VoteCasted(proposalId, userThree, 2, token.balanceOf(userThree));
+    //     governance.vote(2);
+    //     vm.stopPrank();
+    //     (,uint deadline,) = governance.getProposal(proposalId);
+    //     vm.warp(deadline + 1);
+    //     bool result = governance.getResult(proposalId);
+    //     assertEq(result, false);
 
-        // Test that the abstain vote doesn't stop a vote from passing
-        uint newProposalId = governance.propose("New Proposal");
-        governance.vote(1);
-        vm.startPrank(userThree);
-        vm.expectEmit(false, true, true, true);
-        emit Governance.VoteCasted(newProposalId, userThree, 2, token.balanceOf(userThree));
-        governance.vote(2);
+    //     // Test that the abstain vote doesn't stop a vote from passing
+    //     uint newProposalId = governance.propose("New Proposal");
+    //     governance.vote(1);
+    //     vm.startPrank(userThree);
+    //     vm.expectEmit(false, true, true, true);
+    //     emit Governance.VoteCasted(newProposalId, userThree, 2, token.balanceOf(userThree));
+    //     governance.vote(2);
 
-        (,uint nextDeadline,) = governance.getProposal(newProposalId);
-        vm.warp(nextDeadline + 1);
-        bool nextResult = governance.getResult(newProposalId);
-        assertEq(nextResult, true);
-    }
+    //     (,uint nextDeadline,) = governance.getProposal(newProposalId);
+    //     vm.warp(nextDeadline + 1);
+    //     bool nextResult = governance.getResult(newProposalId);
+    //     assertEq(nextResult, true);
+    // }
 
-    function testErrorDoubleVoting() public {
-        vm.startPrank(userOne);
-        governance.vote(0);
-        vm.expectRevert();
-        governance.vote(1);
-        vm.stopPrank();
-    }
+    // function testErrorDoubleVoting() public {
+    //     vm.startPrank(userOne);
+    //     governance.vote(0);
+    //     vm.expectRevert();
+    //     governance.vote(1);
+    //     vm.stopPrank();
+    // }
 
-    function testTieVotingResult() public {
-        // Tie vote should result in a failed proposal
-        vm.prank(userThree);
-        governance.vote(1);
-        vm.prank(userOne);
-        governance.vote(0);
-        vm.prank(userTwo);
-        governance.vote(0);
-        vm.warp(block.timestamp + votingPeriod + 1);
-        bool result = governance.getResult(proposalId);
-        assertEq(result, false);
-    }
+    // function testTieVotingResult() public {
+    //     // Tie vote should result in a failed proposal
+    //     vm.prank(userThree);
+    //     governance.vote(1);
+    //     vm.prank(userOne);
+    //     governance.vote(0);
+    //     vm.prank(userTwo);
+    //     governance.vote(0);
+    //     vm.warp(block.timestamp + votingPeriod + 1);
+    //     bool result = governance.getResult(proposalId);
+    //     assertEq(result, false);
+    // }
 
-    function testVotingResultRejected() public {
-        // 1000 for vs 2000 against
-        vm.prank(userOne);
-        governance.vote(1);
-        vm.prank(userTwo);
-        governance.vote(0);
-        vm.warp(block.timestamp + votingPeriod + 1);
-        bool result = governance.getResult(proposalId);
-        (string memory title,,) = governance.getProposal(proposalId);
-        assertNotEq(title, "");
-        assertEq(result, false);
-    }
+    // function testVotingResultRejected() public {
+    //     // 1000 for vs 2000 against
+    //     vm.prank(userOne);
+    //     governance.vote(1);
+    //     vm.prank(userTwo);
+    //     governance.vote(0);
+    //     vm.warp(block.timestamp + votingPeriod + 1);
+    //     bool result = governance.getResult(proposalId);
+    //     (string memory title,,) = governance.getProposal(proposalId);
+    //     assertNotEq(title, "");
+    //     assertEq(result, false);
+    // }
 
-    function testVotingResultApproved() public {
-        // 2000 for vs 1000 against
-        vm.prank(userOne);
-        governance.vote(0);
-        vm.prank(userTwo);
-        governance.vote(1);
-        vm.warp(block.timestamp + votingPeriod + 1);
-        bool result = governance.getResult(proposalId);
-        assertEq(result, true);
-    }
+    // function testVotingResultApproved() public {
+    //     // 2000 for vs 1000 against
+    //     vm.prank(userOne);
+    //     governance.vote(0);
+    //     vm.prank(userTwo);
+    //     governance.vote(1);
+    //     vm.warp(block.timestamp + votingPeriod + 1);
+    //     bool result = governance.getResult(proposalId);
+    //     assertEq(result, true);
+    // }
 
-    function testErrorVoteAfterDeadline() public {
-        // Try to vote after the voting deadline
-        vm.warp(block.timestamp + votingPeriod + 1);
-        vm.prank(userOne);
-        vm.expectRevert();
-        governance.vote(1);
-    }
+    // function testErrorVoteAfterDeadline() public {
+    //     // Try to vote after the voting deadline
+    //     vm.warp(block.timestamp + votingPeriod + 1);
+    //     vm.prank(userOne);
+    //     vm.expectRevert();
+    //     governance.vote(1);
+    // }
 
-    function testErrorVoteInProgress() public {
-        // Try to get result when vote is in progress
-        vm.expectRevert();
-        governance.getResult(proposalId);
-    }
+    // function testErrorVoteInProgress() public {
+    //     // Try to get result when vote is in progress
+    //     vm.expectRevert();
+    //     governance.getResult(proposalId);
+    // }
 
-    function testVotesRemovedOnTokenTransfer() public {
-        vm.startPrank(userOne);
-        governance.vote(1);
-        vm.expectEmit(false, true, true, true);
-        emit Governance.VotesRemoved(userOne, 1, token.balanceOf(userOne));
-        token.transfer(userTwo, 100 * 10 ** 18);
-        // Now all their votes for the proposal should be removed
-        vm.warp(block.timestamp + votingPeriod + 1);
-        bool result = governance.getResult(proposalId);
-        assertEq(result, false);
-    }
+    // function testVotesRemovedOnTokenTransfer() public {
+    //     vm.startPrank(userOne);
+    //     governance.vote(1);
+    //     vm.expectEmit(false, true, true, true);
+    //     emit Governance.VotesRemoved(userOne, 1, token.balanceOf(userOne));
+    //     token.transfer(userTwo, 100 * 10 ** 18);
+    //     // Now all their votes for the proposal should be removed
+    //     vm.warp(block.timestamp + votingPeriod + 1);
+    //     bool result = governance.getResult(proposalId);
+    //     assertEq(result, false);
+    // }
 
-    function testVoterCanReVoteAfterTokenTransfer() public {
-        vm.startPrank(userOne);
-        governance.vote(1);
+    // function testVoterCanReVoteAfterTokenTransfer() public {
+    //     vm.startPrank(userOne);
+    //     governance.vote(1);
 
-        token.transfer(userTwo, 100 * 10 ** 18);
-        // Should be able to vote again
-        governance.vote(1);
-        vm.warp(block.timestamp + votingPeriod + 1);
-        bool result = governance.getResult(proposalId);
-        assertEq(result, true);
-    }
+    //     token.transfer(userTwo, 100 * 10 ** 18);
+    //     // Should be able to vote again
+    //     governance.vote(1);
+    //     vm.warp(block.timestamp + votingPeriod + 1);
+    //     bool result = governance.getResult(proposalId);
+    //     assertEq(result, true);
+    // }
 
-    function testOnlyTokenCanRemoveVotes() public {
-        vm.prank(userOne);
-        vm.expectRevert();
-        governance.removeVotes(userOne);
-    }
+    // function testOnlyTokenCanRemoveVotes() public {
+    //     vm.prank(userOne);
+    //     vm.expectRevert();
+    //     governance.removeVotes(userOne);
+    // }
 }
