@@ -1,7 +1,7 @@
 {
   "address": "0xaa4C60b784E2b3E485035399bF1b1aBDeD66A60f",
   "ens": "meketom.eth",
-  "installLocation": "n",
+  "installLocation": "/home/dtome/Workspace/danitome24/projects/bc-eth-tech-tree-challenges",
   "challenges": [
     {
       "challengeName": "token-voting",
