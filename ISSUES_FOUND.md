@@ -8,3 +8,5 @@
 Maybe would be nice to tell somewhere to create Two variables called: `votesFor` and `votesAgainst` to not fail test and redo some code (in case you used other data structure to store votes).
 2.  Same for `hasVoted` function
 
+## DAO-GOVERNANCE-PROPOSALS-AND-VOTING.
+1. Step 2 > "The function should a unique proposalId that can be used to query the proposal later.". Missing return word?
