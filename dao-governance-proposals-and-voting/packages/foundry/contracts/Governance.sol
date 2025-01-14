@@ -22,6 +22,7 @@ contract Governance {
 
 
   struct Proposal {
+    string title;
     uint256 deadline;
   }
 
@@ -38,7 +39,7 @@ contract Governance {
    */
   function propose(string memory _title) external returns(uint256) {
     uint256 proposalId = nextProposalId;
-
+    activeProposal = Proposal(_title, votingPeriod);
 
     emit ProposalCreated(proposalId, _title, votingPeriod, msg.sender);
     nextProposalId++;
