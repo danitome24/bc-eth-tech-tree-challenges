@@ -55,6 +55,83 @@
         }
       ],
       "timestamp": "2025-01-08T20:44:37.264Z"
+    },
+    {
+      "challengeName": "dao-governance-proposals-and-voting",
+      "status": "success",
+      "contractAddress": "0xC4661377Cb0d15CE4349F16C1c08E237e7A71BEc",
+      "network": "sepolia",
+      "gasReport": [
+        {
+          "functionName": "testErrorDoubleVoting",
+          "gasUsed": 75722
+        },
+        {
+          "functionName": "testErrorNonMemberProposal",
+          "gasUsed": 18895
+        },
+        {
+          "functionName": "testErrorNonMemberVoting",
+          "gasUsed": 18573
+        },
+        {
+          "functionName": "testErrorSubmitProposalWhenOneAlreadyQueued",
+          "gasUsed": 139591
+        },
+        {
+          "functionName": "testErrorVoteAfterDeadline",
+          "gasUsed": 27759
+        },
+        {
+          "functionName": "testErrorVoteInProgress",
+          "gasUsed": 14780
+        },
+        {
+          "functionName": "testOnlyTokenCanRemoveVotes",
+          "gasUsed": 13200
+        },
+        {
+          "functionName": "testProposal",
+          "gasUsed": 140438
+        },
+        {
+          "functionName": "testProposalIDsAreUnique",
+          "gasUsed": 134997
+        },
+        {
+          "functionName": "testTieVotingResult",
+          "gasUsed": 190782
+        },
+        {
+          "functionName": "testVoterCanReVoteAfterTokenTransfer",
+          "gasUsed": 131616
+        },
+        {
+          "functionName": "testVotesRemovedOnTokenTransfer",
+          "gasUsed": 97064
+        },
+        {
+          "functionName": "testVotingAbstain",
+          "gasUsed": 271107
+        },
+        {
+          "functionName": "testVotingAgainst",
+          "gasUsed": 91434
+        },
+        {
+          "functionName": "testVotingFor",
+          "gasUsed": 111366
+        },
+        {
+          "functionName": "testVotingResultApproved",
+          "gasUsed": 155761
+        },
+        {
+          "functionName": "testVotingResultRejected",
+          "gasUsed": 163544
+        }
+      ],
+      "timestamp": "2025-01-14T22:37:54.346Z"
     }
   ]
 }
