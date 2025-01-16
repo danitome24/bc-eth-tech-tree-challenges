@@ -11,6 +11,9 @@ contract MolochRageQuit {
     uint256 proposalId, address proposer, address contractToCall, bytes dataToCallWith, uint256 deadline
   );
   event MemberAdded(address newMember);
+  event Voted(uint256 proposalId, address member);
+  event ProposalExecuted(uint256 proposalId);
+  event RageQuit(address member, uint256 returnedETH);
 
   ///////////////////
   ///// Structs
@@ -30,6 +33,8 @@ contract MolochRageQuit {
   uint256 nextProposalId;
   mapping(uint256 proposalId => Proposal proposal) idToProposal;
   mapping(address member => uint256 shares) membersToShares;
+  uint256 totalMembers;
+  uint256 totalShares;
 
   ///////////////////
   ///// Constructor
@@ -47,11 +52,11 @@ contract MolochRageQuit {
   function propose(address contractToCall, bytes calldata data, uint256 deadline) external {
     require(contractToCall != address(0), "Contract address cannot be zero");
     require(membersToShares[msg.sender] > 0, "No Members cannot propose");
-    _createProposal(contractToCall, data, deadline);
+    require(deadline > block.timestamp, "Deadline must be greater than current timestamp");
+    _createProposal(contractToCall, data, deadline, msg.sender);
   }
 
-  function addMember(address newMember, uint256 shares) private {
-    // Only can be called by itself.
+  function addMember(address newMember, uint256 shares) external {
     require(msg.sender == address(this), "Only callable by itself");
     _addMember(newMember, shares);
   }
@@ -59,17 +64,36 @@ contract MolochRageQuit {
   function vote(
     uint256 proposalId
   ) external {
-    // Revert if called by non-member.
-    // Revert if voter has already voted.
-    // Revert if proposal does not exist.
-    // Vote then
+    require(membersToShares[msg.sender] > 0, "Non-members cannot vote");
+    require(idToProposal[proposalId].proposer != address(0), "Proposal not exists");
+    _vote(proposalId, msg.sender);
   }
 
   function executeProposal(
     uint256 proposalId
-  ) external { }
+  ) external {
+    require(idToProposal[proposalId].proposer != address(0), "Proposal not exists");
+    Proposal storage proposal = idToProposal[proposalId];
+    require(proposal.deadline < block.timestamp, "Deadline not passed yet");
+    require(proposal.votes > (totalMembers / 2), "No majority votes");
 
-  function rageQuit() external { }
+    (bool success, bytes memory returnData) = (proposal.contractToCall).call(proposal.dataToCallWith);
+    require(success, string(abi.encodePacked("Call failed: ", returnData)));
+    emit ProposalExecuted(proposalId);
+  }
+
+  function rageQuit() external {
+    uint256 memberShare = membersToShares[msg.sender];
+    require(memberShare > 0, "Non-members cannot vote");
+
+    uint256 memberPortion = (memberShare * address(this).balance) / totalShares;
+    (bool success,) = (msg.sender).call{ value: memberPortion }("");
+    require(success, "Sending ETH failed");
+    membersToShares[msg.sender] = 0;
+    totalMembers--;
+    totalShares -= memberShare;
+    emit RageQuit(msg.sender, memberPortion);
+  }
 
   /////////////////////////
   ///// View Functions
@@ -84,30 +108,48 @@ contract MolochRageQuit {
 
   function isMember(
     address
-  ) external view returns (address) { }
+  ) external view returns (bool) {
+    return (membersToShares[msg.sender] > 0);
+  }
+
+  receive() external payable {}
 
   /////////////////////////
   ///// Private Functions
   /////////////////////////
+
   function _incrementProposalId() private {
     nextProposalId++;
   }
 
-  function _createProposal(address contractToCall, bytes calldata data, uint256 deadline) private {
+  function _createProposal(address contractToCall, bytes calldata data, uint256 deadline, address proposer) private {
     Proposal storage newProposal = idToProposal[nextProposalId];
 
-    newProposal.proposer = msg.sender;
+    newProposal.proposer = proposer;
     newProposal.contractToCall = contractToCall;
     newProposal.dataToCallWith = data;
     newProposal.deadline = deadline;
     newProposal.votes = 0;
 
-    emit ProposalCreated(nextProposalId, msg.sender, contractToCall, data, deadline);
+    emit ProposalCreated(nextProposalId, proposer, contractToCall, data, deadline);
 
     _incrementProposalId();
   }
 
   function _addMember(address newMember, uint256 shares) private {
     membersToShares[newMember] = shares;
+    totalMembers++;
+    totalShares += shares;
+    emit MemberAdded(newMember);
+  }
+
+  function _vote(uint256 proposalId, address by) private {
+    Proposal storage proposal = idToProposal[proposalId];
+
+    require(!proposal.voters[by], "Member already voted");
+
+    proposal.votes += membersToShares[by];
+    proposal.voters[by] = true;
+    emit Voted(proposalId, by);
   }
 }

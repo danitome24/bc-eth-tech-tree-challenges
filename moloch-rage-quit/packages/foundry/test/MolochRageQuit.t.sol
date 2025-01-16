@@ -73,183 +73,183 @@ contract MolochRageQuitTest is Test {
       );
   }
 
-  // function testInvalidProposalDeadline() public {
-  //     vm.expectRevert();
-  //     dao.propose(
-  //         address(dao),
-  //         addMemberData(member1, 100),
-  //         block.timestamp - 1
-  //     );
-  // }
+  function testInvalidProposalDeadline() public {
+      vm.expectRevert();
+      dao.propose(
+          address(dao),
+          addMemberData(member1, 100),
+          block.timestamp - 1
+      );
+  }
 
-  // function testProposalExists() public {
-  //     vm.expectRevert();
-  //     dao.vote(1);
-  // }
+  function testProposalExists() public {
+      vm.expectRevert();
+      dao.vote(1);
+  }
 
-  // function testMemberCanVote() public {
-  //     dao.propose(
-  //         address(dao),
-  //         addMemberData(member1, 100),
-  //         DEADLINE
-  //     );
-  //     dao.vote(1);
-  //     (, , , uint256 votes, ) = dao.getProposal(1);
-  //     assertEq(votes, 100);
-  // }
+  function testMemberCanVote() public {
+      dao.propose(
+          address(dao),
+          addMemberData(member1, 100),
+          DEADLINE
+      );
+      dao.vote(1);
+      (, , , uint256 votes, ) = dao.getProposal(1);
+      assertEq(votes, 100);
+  }
 
-  // function testMemberCanOnlyVoteOnce() public {
-  //     dao.propose(
-  //         address(dao),
-  //         addMemberData(member1, 100),
-  //         DEADLINE
-  //     );
-  //     dao.vote(1);
-  //     vm.expectRevert();
-  //     dao.vote(1);
-  // }
+  function testMemberCanOnlyVoteOnce() public {
+      dao.propose(
+          address(dao),
+          addMemberData(member1, 100),
+          DEADLINE
+      );
+      dao.vote(1);
+      vm.expectRevert();
+      dao.vote(1);
+  }
 
-  // function testNonMembersCannotVote() public {
-  //     dao.propose(
-  //         address(dao),
-  //         addMemberData(member1, 100),
-  //         DEADLINE
-  //     );
-  //     vm.prank(nonMember1);
-  //     vm.expectRevert();
-  //     dao.vote(1);
-  // }
+  function testNonMembersCannotVote() public {
+      dao.propose(
+          address(dao),
+          addMemberData(member1, 100),
+          DEADLINE
+      );
+      vm.prank(nonMember1);
+      vm.expectRevert();
+      dao.vote(1);
+  }
 
-  // function testProposalExecution() public {
-  //     dao.propose(
-  //         address(dao),
-  //         addMemberData(member1, 100),
-  //         DEADLINE
-  //     );
+  function testProposalExecution() public {
+      dao.propose(
+          address(dao),
+          addMemberData(member1, 100),
+          DEADLINE
+      );
 
-  //     dao.vote(1);
-  //     vm.warp(block.timestamp + 2 days);
-  //     vm.expectEmit(true, true, true, true);
-  //     emit MemberAdded(member1);
-  //     dao.executeProposal(1);
-  // }
+      dao.vote(1);
+      vm.warp(block.timestamp + 2 days);
+      vm.expectEmit(true, true, true, true);
+      emit MemberAdded(member1);
+      dao.executeProposal(1);
+  }
 
-  // function testAddMember() public {
-  //     dao.propose(
-  //         address(dao),
-  //         addMemberData(member1, 100),
-  //         DEADLINE
-  //     );
-  //     dao.vote(1);
-  //     vm.warp(block.timestamp + 2 days);
-  //     vm.expectEmit(true, true, true, true);
-  //     emit MemberAdded(member1);
-  //     dao.executeProposal(1);
-  //     assertTrue(dao.isMember(member1));
-  // }
+  function testAddMember() public {
+      dao.propose(
+          address(dao),
+          addMemberData(member1, 100),
+          DEADLINE
+      );
+      dao.vote(1);
+      vm.warp(block.timestamp + 2 days);
+      vm.expectEmit(true, true, true, true);
+      emit MemberAdded(member1);
+      dao.executeProposal(1);
+      assertTrue(dao.isMember(member1));
+  }
 
-  // function testDeadlineNotReached() public {
-  //     dao.propose(
-  //         address(dao),
-  //         addMemberData(member1, 100),
-  //         DEADLINE
-  //     );
-  //     vm.expectRevert();
-  //     dao.executeProposal(1);
-  // }
+  function testDeadlineNotReached() public {
+      dao.propose(
+          address(dao),
+          addMemberData(member1, 100),
+          DEADLINE
+      );
+      vm.expectRevert();
+      dao.executeProposal(1);
+  }
 
-  // function testProposalRejected() public {
-  //     dao.propose(
-  //         address(dao),
-  //         addMemberData(member1, 100),
-  //         DEADLINE
-  //     );
-  //     vm.warp(block.timestamp + 2 days);
-  //     vm.expectRevert();
-  //     dao.executeProposal(1);
-  // }
+  function testProposalRejected() public {
+      dao.propose(
+          address(dao),
+          addMemberData(member1, 100),
+          DEADLINE
+      );
+      vm.warp(block.timestamp + 2 days);
+      vm.expectRevert();
+      dao.executeProposal(1);
+  }
 
-  // function testProposalAlreadyVotedEvent() public {
-  //     dao.propose(
-  //         address(dao),
-  //         addMemberData(member1, 100),
-  //         DEADLINE
-  //     );
-  //     dao.vote(1);
-  //     vm.expectRevert();
-  //     dao.vote(1);
-  // }
+  function testProposalAlreadyVotedEvent() public {
+      dao.propose(
+          address(dao),
+          addMemberData(member1, 100),
+          DEADLINE
+      );
+      dao.vote(1);
+      vm.expectRevert();
+      dao.vote(1);
+  }
 
-  // function testRageQuit() public {
-  //     // This will add 1 ETH to treasury
-  //     payable(address(dao)).transfer(ONE_ETH);
-  //     dao.propose(
-  //         address(dao),
-  //         addMemberData(member1, 100),
-  //         DEADLINE
-  //     );
-  //     dao.vote(1);
-  //     vm.warp(block.timestamp + 2 days);
-  //     dao.executeProposal(1);
-  //     assertTrue(dao.isMember(member1));
-  //     vm.startPrank(member1);
-  //     uint balanceBefore = address(member1).balance;
-  //     vm.expectEmit(true, true, true, true);
-  //     emit RageQuit(member1, ONE_ETH / 2);
-  //     dao.rageQuit();
-  //     assertFalse(dao.isMember(member1));
-  //     uint balanceAfter = address(member1).balance;
-  //     assertEq(balanceAfter, balanceBefore + ONE_ETH / 2);
+  function testRageQuit() public {
+      // This will add 1 ETH to treasury
+      payable(address(dao)).transfer(ONE_ETH);
+      dao.propose(
+          address(dao),
+          addMemberData(member1, 100),
+          DEADLINE
+      );
+      dao.vote(1);
+      vm.warp(block.timestamp + 2 days);
+      dao.executeProposal(1);
+      assertTrue(dao.isMember(member1));
+      vm.startPrank(member1);
+      uint balanceBefore = address(member1).balance;
+      vm.expectEmit(true, true, true, true);
+      emit RageQuit(member1, ONE_ETH / 2);
+      dao.rageQuit();
+      assertFalse(dao.isMember(member1));
+      uint balanceAfter = address(member1).balance;
+      assertEq(balanceAfter, balanceBefore + ONE_ETH / 2);
 
-  // }
+  }
 
-  // function testRageQuitWithDifferentShareAmounts() public {
-  //     // Add three ETH to the treasury
-  //     payable(address(dao)).transfer(ONE_ETH * 3);
-  //     // Propose to add new member
-  //     dao.propose(
-  //         address(dao),
-  //         addMemberData(member1, 100),
-  //         DEADLINE
-  //     );
-  //     // Propose to add a second member
-  //     dao.propose(
-  //         address(dao),
-  //         addMemberData(member2, 100),
-  //         DEADLINE + 1 days
-  //     );
-  //     // Vote for each proposal
-  //     dao.vote(1);
-  //     dao.vote(2);
-  //     // Warp to after first deadline but before second deadline
-  //     vm.warp(DEADLINE + 1);
-  //     dao.executeProposal(1);
-  //     assertTrue(dao.isMember(member1));
-  //     vm.startPrank(member1);
-  //     // Vote for the second proposal
-  //     dao.vote(2);
-  //     // Warp to after second deadline
-  //     vm.warp(DEADLINE + 1 days + 1);
-  //     dao.executeProposal(2);
-  //     assertTrue(dao.isMember(member2));
-  //     // Now there are three members (including deployer) and three ETH in the treasury
-  //     vm.expectEmit(true, true, true, true);
-  //     emit RageQuit(member1, ONE_ETH);
-  //     dao.rageQuit();
-  //     assertFalse(dao.isMember(member1));
-  //     // Member 2 should be able to rage quit with the same outcome
-  //     vm.startPrank(member2);
-  //     vm.expectEmit(true, true, true, true);
-  //     emit RageQuit(member2, ONE_ETH);
-  //     dao.rageQuit();
-  //     assertFalse(dao.isMember(member2));
-  // }
+  function testRageQuitWithDifferentShareAmounts() public {
+      // Add three ETH to the treasury
+      payable(address(dao)).transfer(ONE_ETH * 3);
+      // Propose to add new member
+      dao.propose(
+          address(dao),
+          addMemberData(member1, 100),
+          DEADLINE
+      );
+      // Propose to add a second member
+      dao.propose(
+          address(dao),
+          addMemberData(member2, 100),
+          DEADLINE + 1 days
+      );
+      // Vote for each proposal
+      dao.vote(1);
+      dao.vote(2);
+      // Warp to after first deadline but before second deadline
+      vm.warp(DEADLINE + 1);
+      dao.executeProposal(1);
+      assertTrue(dao.isMember(member1));
+      vm.startPrank(member1);
+      // Vote for the second proposal
+      dao.vote(2);
+      // Warp to after second deadline
+      vm.warp(DEADLINE + 1 days + 1);
+      dao.executeProposal(2);
+      assertTrue(dao.isMember(member2));
+      // Now there are three members (including deployer) and three ETH in the treasury
+      vm.expectEmit(true, true, true, true);
+      emit RageQuit(member1, ONE_ETH);
+      dao.rageQuit();
+      assertFalse(dao.isMember(member1));
+      // Member 2 should be able to rage quit with the same outcome
+      vm.startPrank(member2);
+      vm.expectEmit(true, true, true, true);
+      emit RageQuit(member2, ONE_ETH);
+      dao.rageQuit();
+      assertFalse(dao.isMember(member2));
+  }
 
-  // function testRageQuitNonMember() public {
-  //     vm.startPrank(nonMember1);
-  //     vm.expectRevert();
-  //     dao.rageQuit();
-  // }
+  function testRageQuitNonMember() public {
+      vm.startPrank(nonMember1);
+      vm.expectRevert();
+      dao.rageQuit();
+  }
 
   receive() external payable {}
 
