@@ -4,6 +4,263 @@
  */
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
-const deployedContracts = {} as const;
+const deployedContracts = {
+  11155111: {
+    MolochRageQuit: {
+      address: "0xa3828e7dbeab5db6acb4afee37b6928ba657f597",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_deployerShares",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "receive",
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "addMember",
+          inputs: [
+            {
+              name: "newMember",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "shares",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "executeProposal",
+          inputs: [
+            {
+              name: "proposalId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "getProposal",
+          inputs: [
+            {
+              name: "proposalId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "proposer",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "contractAddr",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "data",
+              type: "bytes",
+              internalType: "bytes",
+            },
+            {
+              name: "votes",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "deadline",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "isMember",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "propose",
+          inputs: [
+            {
+              name: "contractToCall",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "data",
+              type: "bytes",
+              internalType: "bytes",
+            },
+            {
+              name: "deadline",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "rageQuit",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "vote",
+          inputs: [
+            {
+              name: "proposalId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "MemberAdded",
+          inputs: [
+            {
+              name: "newMember",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "ProposalCreated",
+          inputs: [
+            {
+              name: "proposalId",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "proposer",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "contractToCall",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "dataToCallWith",
+              type: "bytes",
+              indexed: false,
+              internalType: "bytes",
+            },
+            {
+              name: "deadline",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "ProposalExecuted",
+          inputs: [
+            {
+              name: "proposalId",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "RageQuit",
+          inputs: [
+            {
+              name: "member",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "returnedETH",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Voted",
+          inputs: [
+            {
+              name: "proposalId",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "member",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+} as const;
 
 export default deployedContracts satisfies GenericContractsDeclaration;

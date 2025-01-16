@@ -132,6 +132,79 @@
         }
       ],
       "timestamp": "2025-01-14T22:37:54.346Z"
+    },
+    {
+      "challengeName": "moloch-rage-quit",
+      "status": "success",
+      "contractAddress": "0xa3828e7dbeab5db6acb4afee37b6928ba657f597",
+      "network": "sepolia",
+      "gasReport": [
+        {
+          "functionName": "testAddMember",
+          "gasUsed": 268550
+        },
+        {
+          "functionName": "testCreateProposalNonMember",
+          "gasUsed": 16201
+        },
+        {
+          "functionName": "testDeadlineNotReached",
+          "gasUsed": 183312
+        },
+        {
+          "functionName": "testInvalidProposalDeadline",
+          "gasUsed": 13698
+        },
+        {
+          "functionName": "testMemberCanOnlyVoteOnce",
+          "gasUsed": 229024
+        },
+        {
+          "functionName": "testMemberCanVote",
+          "gasUsed": 231101
+        },
+        {
+          "functionName": "testNonMembersCannotVote",
+          "gasUsed": 187604
+        },
+        {
+          "functionName": "testProposalAddressZero",
+          "gasUsed": 13497
+        },
+        {
+          "functionName": "testProposalAlreadyVotedEvent",
+          "gasUsed": 228980
+        },
+        {
+          "functionName": "testProposalCreation",
+          "gasUsed": 195125
+        },
+        {
+          "functionName": "testProposalExecution",
+          "gasUsed": 266996
+        },
+        {
+          "functionName": "testProposalExists",
+          "gasUsed": 12845
+        },
+        {
+          "functionName": "testProposalRejected",
+          "gasUsed": 186167
+        },
+        {
+          "functionName": "testRageQuit",
+          "gasUsed": 268597
+        },
+        {
+          "functionName": "testRageQuitNonMember",
+          "gasUsed": 13123
+        },
+        {
+          "functionName": "testRageQuitWithDifferentShareAmounts",
+          "gasUsed": 531466
+        }
+      ],
+      "timestamp": "2025-01-16T16:37:18.140Z"
     }
   ]
 }
