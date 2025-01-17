@@ -238,6 +238,55 @@
         }
       ],
       "timestamp": "2025-01-16T21:35:36.999Z"
+    },
+    {
+      "challengeName": "eth-streaming",
+      "status": "success",
+      "contractAddress": "0x385dF685fdFD8BC7d9164d9ef69455a4f40Ee0F4",
+      "network": "sepolia",
+      "gasReport": [
+        {
+          "functionName": "testContractCanReceiveEther",
+          "gasUsed": 17224
+        },
+        {
+          "functionName": "testInvalidAccountCannotWithdraw",
+          "gasUsed": 15145
+        },
+        {
+          "functionName": "testOnlyOwnerCanAddStream",
+          "gasUsed": 15326
+        },
+        {
+          "functionName": "testOwnerCanAddStream",
+          "gasUsed": 22489
+        },
+        {
+          "functionName": "testOwnerCanUpdateStream",
+          "gasUsed": 83315
+        },
+        {
+          "functionName": "testValidAccountCanWithdraw",
+          "gasUsed": 76420
+        },
+        {
+          "functionName": "testValidAccountCanWithdrawPartialAmountsOfUnlocked",
+          "gasUsed": 85629
+        },
+        {
+          "functionName": "testValidAccountExcessWithdrawalFails",
+          "gasUsed": 75654
+        },
+        {
+          "functionName": "testValidAccountPartialWithdrawals",
+          "gasUsed": 90838
+        },
+        {
+          "functionName": "testWithdrawCannotExceedBalance",
+          "gasUsed": 43005
+        }
+      ],
+      "timestamp": "2025-01-17T17:04:07.254Z"
     }
   ]
 }
