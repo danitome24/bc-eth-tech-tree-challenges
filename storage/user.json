@@ -287,6 +287,87 @@
         }
       ],
       "timestamp": "2025-01-17T17:04:07.254Z"
+    },
+    {
+      "challengeName": "token-wrapper-weth",
+      "status": "success",
+      "contractAddress": "0xac8E009CE0E3dd5d4B3F97A62743AfAb0B2A8Bb5",
+      "network": "sepolia",
+      "gasReport": [
+        {
+          "functionName": "testApprove",
+          "gasUsed": 38573
+        },
+        {
+          "functionName": "testDeposit",
+          "gasUsed": 88330
+        },
+        {
+          "functionName": "testEmitApprovalEvent",
+          "gasUsed": 39143
+        },
+        {
+          "functionName": "testEmitTransferEvent",
+          "gasUsed": 97265
+        },
+        {
+          "functionName": "testEmitTransferEventOnTransferFrom",
+          "gasUsed": 111013
+        },
+        {
+          "functionName": "testFallback",
+          "gasUsed": 87932
+        },
+        {
+          "functionName": "testTotalSupply",
+          "gasUsed": 85996
+        },
+        {
+          "functionName": "testTransfer",
+          "gasUsed": 97853
+        },
+        {
+          "functionName": "testTransferFrom",
+          "gasUsed": 111504
+        },
+        {
+          "functionName": "testTransferFromAllowanceIsAdjusted",
+          "gasUsed": 113115
+        },
+        {
+          "functionName": "testTransferFromWithInsufficientAllowance",
+          "gasUsed": 121984
+        },
+        {
+          "functionName": "testTransferFromWithInsufficientBalance",
+          "gasUsed": 102849
+        },
+        {
+          "functionName": "testTransferFromWithMaxAllowance",
+          "gasUsed": 124311
+        },
+        {
+          "functionName": "testTransferFromWithoutAllowance",
+          "gasUsed": 98580
+        },
+        {
+          "functionName": "testTransferWithInsufficientBalance",
+          "gasUsed": 95879
+        },
+        {
+          "functionName": "testWithdraw",
+          "gasUsed": 98145
+        },
+        {
+          "functionName": "testWithdrawFailedToSendEther",
+          "gasUsed": 1040415004
+        },
+        {
+          "functionName": "testWithdrawInsufficientBalance",
+          "gasUsed": 92292
+        }
+      ],
+      "timestamp": "2025-01-18T21:04:10.924Z"
     }
   ]
 }
