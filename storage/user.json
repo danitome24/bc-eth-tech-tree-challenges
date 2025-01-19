@@ -368,6 +368,47 @@
         }
       ],
       "timestamp": "2025-01-18T21:04:10.924Z"
+    },
+    {
+      "challengeName": "rebasing-token",
+      "status": "success",
+      "contractAddress": "0x3B8e5377F1Ec049a224A036F9e423dF43Db149AD",
+      "network": "sepolia",
+      "gasReport": [
+        {
+          "functionName": "testAllowanceUnchangedAfterRebase",
+          "gasUsed": 54029
+        },
+        {
+          "functionName": "testApproveAndTransferFrom",
+          "gasUsed": 73445
+        },
+        {
+          "functionName": "testInitialSupply",
+          "gasUsed": 29109
+        },
+        {
+          "functionName": "testRebaseNegative",
+          "gasUsed": 39040
+        },
+        {
+          "functionName": "testRebaseNotOwner",
+          "gasUsed": 13090
+        },
+        {
+          "functionName": "testRebasePositive",
+          "gasUsed": 38868
+        },
+        {
+          "functionName": "testTransferAllTokens",
+          "gasUsed": 37910
+        },
+        {
+          "functionName": "testTransferFromAllTokens",
+          "gasUsed": 66289
+        }
+      ],
+      "timestamp": "2025-01-19T07:49:25.636Z"
     }
   ]
 }
