@@ -409,6 +409,127 @@
         }
       ],
       "timestamp": "2025-01-19T07:49:25.636Z"
+    },
+    {
+      "challengeName": "dead-mans-switch",
+      "status": "success",
+      "contractAddress": "0x539Bc179F9d90946e0Faf14492906CeE47381634",
+      "network": "sepolia",
+      "gasReport": [
+        {
+          "functionName": "testAddBeneficiary",
+          "gasUsed": 106068
+        },
+        {
+          "functionName": "testAddBeneficiaryTwice",
+          "gasUsed": 103802
+        },
+        {
+          "functionName": "testCheckIn",
+          "gasUsed": 61755
+        },
+        {
+          "functionName": "testContractCanHandleReceivedFundsWithUnknownCallData",
+          "gasUsed": 68645
+        },
+        {
+          "functionName": "testContractCanHandleReceivedFundsWithoutCallData",
+          "gasUsed": 68595
+        },
+        {
+          "functionName": "testDeposit",
+          "gasUsed": 67552
+        },
+        {
+          "functionName": "testEmitCheckInEventOnAddBeneficiary",
+          "gasUsed": 107669
+        },
+        {
+          "functionName": "testEmitCheckInEventOnCheckIn",
+          "gasUsed": 63657
+        },
+        {
+          "functionName": "testEmitCheckInEventOnDeposit",
+          "gasUsed": 96134
+        },
+        {
+          "functionName": "testEmitCheckInEventOnRemoveBeneficiary",
+          "gasUsed": 86300
+        },
+        {
+          "functionName": "testEmitCheckInEventOnSetCheckInInterval",
+          "gasUsed": 61411
+        },
+        {
+          "functionName": "testEmitCheckInEventOnWithdraw",
+          "gasUsed": 87525
+        },
+        {
+          "functionName": "testEmitDepositEvent",
+          "gasUsed": 67895
+        },
+        {
+          "functionName": "testEmitWithdrawalEvent",
+          "gasUsed": 85988
+        },
+        {
+          "functionName": "testRemoveBeneficiary",
+          "gasUsed": 86575
+        },
+        {
+          "functionName": "testRemoveBeneficiaryWhenBeneficiaryDoesntExist",
+          "gasUsed": 12830
+        },
+        {
+          "functionName": "testSetCheckInInterval",
+          "gasUsed": 59470
+        },
+        {
+          "functionName": "testSetCheckInIntervalWhenZero",
+          "gasUsed": 8441
+        },
+        {
+          "functionName": "testWithdraw",
+          "gasUsed": 87216
+        },
+        {
+          "functionName": "testWithdrawAsBeneficiary",
+          "gasUsed": 211271
+        },
+        {
+          "functionName": "testWithdrawAsBeneficiaryBeforeInterval",
+          "gasUsed": 169133
+        },
+        {
+          "functionName": "testWithdrawAsBeneficiaryPartialAmounts",
+          "gasUsed": 223834
+        },
+        {
+          "functionName": "testWithdrawAsBeneficiaryTransferFailed",
+          "gasUsed": 179918
+        },
+        {
+          "functionName": "testWithdrawAsNonBeneficiary",
+          "gasUsed": 99805
+        },
+        {
+          "functionName": "testWithdrawAsNonBeneficiaryBeforeInterval",
+          "gasUsed": 99745
+        },
+        {
+          "functionName": "testWithdrawInsufficientBalance",
+          "gasUsed": 72423
+        },
+        {
+          "functionName": "testWithdrawTransferFailed",
+          "gasUsed": 78205
+        },
+        {
+          "functionName": "testZeroAddress",
+          "gasUsed": 8654
+        }
+      ],
+      "timestamp": "2025-01-22T07:41:27.274Z"
     }
   ]
 }
