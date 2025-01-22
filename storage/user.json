@@ -530,6 +530,83 @@
         }
       ],
       "timestamp": "2025-01-22T07:41:27.274Z"
+    },
+    {
+      "challengeName": "social-recovery",
+      "status": "success",
+      "contractAddress": "0x080B89C411CFB9dc0D4Aaef012cf8372aaC305Ca",
+      "network": "sepolia",
+      "gasReport": [
+        {
+          "functionName": "testAddGuardian",
+          "gasUsed": 43596
+        },
+        {
+          "functionName": "testAddSameGuardianTwice",
+          "gasUsed": 46726
+        },
+        {
+          "functionName": "testCallCanExecuteExternalTransactions",
+          "gasUsed": 205865
+        },
+        {
+          "functionName": "testCallCanForwardEth",
+          "gasUsed": 54617
+        },
+        {
+          "functionName": "testCallRevertsWithCorrectError",
+          "gasUsed": 11352
+        },
+        {
+          "functionName": "testCanHoldEth",
+          "gasUsed": 15179
+        },
+        {
+          "functionName": "testCanMoveHeldEth",
+          "gasUsed": 55656
+        },
+        {
+          "functionName": "testCanOnlySignalNewOwnerIfGuardian",
+          "gasUsed": 13281
+        },
+        {
+          "functionName": "testCanOnlySignalNewOwnerOnce",
+          "gasUsed": 98164
+        },
+        {
+          "functionName": "testCantAddGuardianIfNotOwner",
+          "gasUsed": 19642
+        },
+        {
+          "functionName": "testCantCallIfNotOwner",
+          "gasUsed": 16894
+        },
+        {
+          "functionName": "testCantRemoveGuardianIfNotOwner",
+          "gasUsed": 20346
+        },
+        {
+          "functionName": "testConstructorSetsGaurdians",
+          "gasUsed": 28801
+        },
+        {
+          "functionName": "testRemoveGuardian",
+          "gasUsed": 22470
+        },
+        {
+          "functionName": "testRemoveNonExistantGuardian",
+          "gasUsed": 16502
+        },
+        {
+          "functionName": "testSignalNewOwnerChangesOwnerOnceThresholdMet",
+          "gasUsed": 130920
+        },
+        {
+          "functionName": "testSignalNewOwnerChangesOwnerTwoTimes",
+          "gasUsed": 235221
+        }
+      ],
+      "timestamp": "2025-01-22T08:32:22.320Z"
     }
   ]
 }
